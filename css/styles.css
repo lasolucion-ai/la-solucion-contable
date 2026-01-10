@@ -1,5 +1,5 @@
 /* =========================================
-   1. VARIABLES Y TEMAS (Igual que antes)
+   1. VARIABLES Y TEMAS
    ========================================= */
 :root {
     --primary-blue: #004a8c;
@@ -20,7 +20,7 @@
 }
 
 /* =========================================
-   2. RESET Y BASES (Igual que antes)
+   2. RESET Y BASES
    ========================================= */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -29,7 +29,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
 .theme-switch { position: fixed; top: 20px; right: 20px; background: var(--primary-blue); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 1001; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.3s ease; }
 
 /* =========================================
-   3. HEADER (Igual que antes)
+   3. HEADER 
    ========================================= */
 .hero { background: linear-gradient(135deg, #001a33, var(--primary-blue)); color: white; padding: 60px 0 100px 0; border-radius: 0 0 50px 50px; }
 .hero-flex { display: flex; flex-direction: column; align-items: center; gap: 35px; text-align: center; }
@@ -40,12 +40,12 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
 .social-links { display: flex; gap: 20px; justify-content: center; }
 .social-links a { color: white; font-size: 2.2rem; animation: socialPulse 2s infinite ease-in-out; transition: color 0.3s; }
 @keyframes socialPulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); color: var(--accent-blue); } 100% { transform: scale(1); } }
-.gerente-foto { width: 160px; height: 160px; border-radius: 50%; border: 5px solid white; overflow: hidden; margin: 0 auto 10px; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+.gerente-foto { width: 210px; height: 210px; border-radius: 50%; border: 5px solid white; overflow: hidden; margin: 0 auto 10px; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 .gerente-foto img { width: 100%; height: 100%; object-fit: cover; }
 .gerente-label { font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1.5px; opacity: 0.9; }
 
 /* =========================================
-   4. SECCIONES Y GRIDS (Igual que antes)
+   4. SECCIONES Y GRIDS 
    ========================================= */
 .section { margin: 70px 0; }
 .section-title { font-size: 2rem; margin-bottom: 35px; padding-left: 15px; border-left: 7px solid var(--primary-blue); }
@@ -58,7 +58,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
 .gallery-grid img { width: 100%; height: 260px; object-fit: cover; border-radius: 15px; box-shadow: var(--shadow); }
 
 /* =========================================
-   5. FORMULARIO (Igual que antes)
+   5. FORMULARIO
    ========================================= */
 .form-container { background: var(--card-bg); padding: 50px; border-radius: 30px; box-shadow: var(--shadow); width: 100%; }
 .contact-form { display: flex; flex-direction: column; gap: 20px; }
@@ -87,27 +87,30 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
 /* ESTILOS PARA LAS FOTOS AL FINAL (SIN ZOOM/RECORTE) */
 .full-size-photos {
     display: flex;
-    flex-direction: column; /* Se apilan una debajo de otra */
+    flex-direction: column; 
     gap: 40px;
-    margin-top: 30px;
-    text-align: center;
+    margin-top: 20px;
+    align-items: center; /* Centra todo horizontalmente de forma automática */
+    width: 100%;
 }
 
 .full-size-photos img {
-    width: 250px; /* Ocupan todo el ancho disponible */
-    height: 300px; /* LA CLAVE: La altura se ajusta automáticamente a la imagen real */
+    /* Eliminamos el ancho y alto fijo para evitar el "zoom" */
+    max-width: 90%;      /* Evita que se salga de la pantalla en móviles */
+    width: auto;         /* Respeta el ancho original */
+    height: auto;        /* Respeta la proporción original (LA CLAVE) */
+    
     border-radius: 20px;
     box-shadow: var(--shadow);
     border: 3px solid var(--primary-blue);
-    display: block; /* Elimina espacios extraños debajo de la imagen */
-    
+    display: block; 
 }
 
 .photo-caption {
     text-align: center;
     font-weight: 600;
     color: var(--primary-blue);
-    margin-top: -30px; /* Sube un poco el texto hacia la imagen */
+    margin-top: -30px;   /* Sube el texto para que "pise" un poco la foto */
     margin-bottom: 20px;
     background: var(--card-bg);
     display: inline-block;
@@ -116,22 +119,113 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
     box-shadow: var(--shadow);
     position: relative;
     z-index: 2;
-    left: 50%;
-    transform: translateX(-50%); /* Centrado perfecto */
 }
 
 /* =========================================
-   7. MODALES Y FLOTANTES (Igual que antes)
+   7. MODALES Y FLOTANTES (CORREGIDO)
    ========================================= */
-.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; }
-.modal-window { background: var(--card-bg); padding: 40px; border-radius: 30px; max-width: 550px; width: 100%; position: relative; animation: slideUp 0.4s ease-out; }
-@keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.modal-close { position: absolute; top: 15px; right: 20px; font-size: 2.5rem; border: none; background: none; color: var(--text-color); cursor: pointer; }
-.whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 35px; z-index: 1000; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); transition: 0.3s; }
-.whatsapp-float:hover { transform: scale(1.1); }
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: none; 
+    justify-content: center; 
+    align-items: center;
+    z-index: 2000;
+    padding: 20px;
+}
 
+.modal-window {
+    background: var(--card-bg);
+    padding: 35px;
+    border-radius: 30px;
+    max-width: 600px;
+    width: 100%;
+    /* CLAVE PARA EL SCROLL */
+    max-height: 85vh; 
+    overflow-y: auto; 
+    position: relative;
+    box-shadow: var(--shadow);
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp { 
+    from { transform: translateY(50px); opacity: 0; } 
+    to { transform: translateY(0); opacity: 1; } 
+}
+
+/* Personalización del scrollbar */
+.modal-window::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-window::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    border-radius: 10px;
+}
+.modal-window::-webkit-scrollbar-thumb {
+    background: var(--primary-blue);
+    border-radius: 10px;
+}
+
+.modal-close { 
+    position: absolute; 
+    top: 15px; 
+    right: 20px; 
+    font-size: 2.5rem; 
+    border: none; 
+    background: none; 
+    color: var(--text-color); 
+    cursor: pointer; 
+    z-index: 10;
+}
+
+/* Estilos para el contenido del listado */
+.modal-list-item {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    align-items: start;
+    gap: 12px;
+    font-size: 1.05rem;
+}
+
+.modal-list-item i {
+    color: #25d366; /* Color verde para los checks */
+    margin-top: 5px;
+    font-size: 0.9rem;
+}
+
+/* Estilo especial para los separadores (las líneas ---) */
+.modal-divider {
+    border: none;
+    height: 2px;
+    background: var(--accent-blue);
+    margin: 20px 0 10px 0;
+    opacity: 0.5;
+}
+
+/* Botón flotante WhatsApp */
+.whatsapp-float { 
+    position: fixed; 
+    bottom: 30px; 
+    right: 30px; 
+    background: #25d366; 
+    color: white; 
+    width: 65px; 
+    height: 65px; 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 35px; 
+    z-index: 1000; 
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); 
+    transition: 0.3s; 
+}
+.whatsapp-float:hover { transform: scale(1.1); }
 /* =========================================
-   8. MEDIA QUERIES (Igual que antes)
+   8. MEDIA QUERIES 
    ========================================= */
 @media (min-width: 992px) {
     .hero-flex { flex-direction: row; justify-content: space-between; text-align: left; }
@@ -143,4 +237,74 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
     .form-group { grid-template-columns: 1fr; }
     .address-box { flex-direction: column; text-align: center; margin-top: -40px; padding: 25px; }
     .form-container { padding: 25px; }
+}
+
+/* --- AÑADIR AL FINAL DE TU CSS --- */
+
+/* ESTILOS REVEAL (Mejora 1) */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ESTILOS ESTADÍSTICAS (Mejora 3) */
+.stats-section {
+    background: var(--primary-blue);
+    padding: 50px 20px;
+    border-radius: 30px;
+    color: white;
+    margin: 40px 0;
+    box-shadow: var(--shadow);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--gold);
+}
+
+.stat-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Atributo loading lazy para optimización */
+img[loading="lazy"] {
+    filter: blur(5px);
+    transition: filter 0.3s;
+}
+
+img.reveal-visible {
+    filter: blur(0);
+}
+/* 1. Estado inicial: Las imágenes dentro de un .reveal nacen borrosas */
+.reveal img {
+    filter: blur(15px);
+    transition: filter 1s ease-in-out; /* Transición suave de borroso a nítido */
+}
+
+/* 2. Estado activo: Cuando el JS añade 'reveal-visible', quitamos el blur */
+.reveal-visible img {
+    filter: blur(0) !important;
 }

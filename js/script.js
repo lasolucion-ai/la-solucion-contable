@@ -1,13 +1,17 @@
-// CONTENIDO DE LOS MODALES
+// CONTENIDO DE LOS MODALES (Tu información original sin cambios)
 const infoServicios = {
     contable: {
         titulo: "Servicios Contables",
         lista: [
-            "Consultoría General Contable",
+            "Consultoría General",
             "Balances de Apertura, Gestión y Cierre",
-            "Elaboración de Estados Financieros",
-            "Auditorías Financieras y Operativas",
-            "Flujos de Efectivo para Préstamos Bancarios"
+            "Regulacion de Pago de impuestos",
+            "Elaboración de Estados Financieros",            
+            "Flujos de Efectivo para Préstamos Bancarios",
+            "Contabilidad comercial, Servicios, Industrial, Minero, etc.",
+            "Elaboracion de Estados Financieros",
+            "Contencioso Administrativo y Amparo Constitucional",
+            "Impugnacion ante la A.I.T. Ley 2492-843"
         ]
     },
     tributario: {
@@ -15,29 +19,49 @@ const infoServicios = {
         lista: [
             "Declaraciones Juradas Mensuales y Anuales",
             "Llenado de Formularios (IVA, IT, IUE, etc.)",
-            "Envío de Libros de Compras y Ventas (RCV)",
-            "Cálculo de Deudas Tributarias (Ley 2492)",
-            "Asesoramiento en Fiscalizaciones de Impuestos"
+            "Envío de Libros de Compras y Ventas R.C.V.",
+            "Envio de Estados Financieros SIAT",
+            "Bancarizaciones",
+            "Cálculo de Deudas Tributarias segun Ley 2492 y Ley 843",
+            "Asesoramiento de Fiscalizaciones",
+            "Inventario de mercaderias",
+            "Auditorias Tributarias",
+            "Auditorias Financieras"
         ]
     },
     laboral: {
         titulo: "Servicios Laborales",
         lista: [
-            "Trámites ante el Ministerio de Trabajo",
+            "Trámites en general ante el Ministerio de Trabajo",
+            "DD.JJ. a la oficina virtual de tramites del Ministerio de Trabajo",
+            "Tramites Cajas de Salud (CNS, Petrolera, etc.)",
+            "Certificado R.O.E.",
             "Elaboración de Planillas de Sueldos y Salarios",
-            "Liquidación de Beneficios Sociales y Finiquitos",
-            "Trámites Cajas de Salud (CNS, Petrolera, etc.)",
-            "Gestión de Subsidios Prenatal y Lactancia"
+            "Altas y bajas de derecho habientes",
+            "Liquidación de Beneficios Sociales",
+            "Elaboracion de finiquitos",
+            "Via administrativa ante el Min. de Trabajo",            
+            "SEDEM - subsidios PRENATAL Y LACTANCIA"
         ]
     },
     seprec: {
         titulo: "SEPREC y Otros Trámites",
         lista: [
-            "Constitución de Empresas (S.R.L., S.A., Unipersonal)",
+            "Constitución de Empresas",
+            "Transformación y Fusión de Empresas",
+            "Cierre, Liquidación y Disolución de Empresas",
+            "Apertura de Sucursales",
             "Actualización de Matrículas de Comercio",
-            "Modificaciones, Fusiones y Disoluciones",
+            "Llenado de Formularios SEPREC",
+            "Balace de Gestión, Cierre y Balances Especiales",
             "Trámites en Aduana Nacional",
-            "Licencias de Funcionamiento Municipal"
+            "Licencias de Funcionamiento Municipal",
+            "---------------------------------------------",
+            "Aduana Nacional",
+            "Gobierno Autónomo Municipal de La Paz",
+            "Licencia de Funcionamiento y Patentes",
+            "SIGMA - SIGEP - RUPE - SICOES",
+            "Declaraciones Juradas de Bienes y Renta - Controloria"
         ]
     }
 };
@@ -48,24 +72,36 @@ function openModal(tipo) {
     const content = document.getElementById('modal-content');
     const data = infoServicios[tipo];
 
+    // Generamos el contenido HTML
+    let listHTML = data.lista.map(item => {
+        // Si el item contiene guiones, renderizamos un divisor en lugar de un item con check
+        if (item.includes("---")) {
+            return `<hr class="modal-divider">`;
+        }
+        return `
+            <div class="modal-list-item">
+                <i class="fas fa-check-circle"></i>
+                <span>${item}</span>
+            </div>
+        `;
+    }).join('');
+
     content.innerHTML = `
         <h2 style="color:var(--primary-blue); margin-bottom:20px; font-size:1.8rem;">
-            <i class="fas fa-check-circle"></i> ${data.titulo}
+            <i class="fas fa-briefcase"></i> ${data.titulo}
         </h2>
-        <ul style="list-style:none; padding:0;">
-            ${data.lista.map(item => `
-                <li style="padding:12px 0; border-bottom:1px solid rgba(0,0,0,0.1); display:flex; align-items:start; gap:10px;">
-                    <i class="fas fa-caret-right" style="color:var(--accent-blue); margin-top:5px;"></i>
-                    <span style="font-size:1.1rem;">${item}</span>
-                </li>
-            `).join('')}
-        </ul>
+        <div class="modal-body-list">
+            ${listHTML}
+        </div>
     `;
+
     modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Bloquea el scroll de la página principal
 }
 
 function closeModal() {
     document.getElementById('service-modal').style.display = 'none';
+    document.body.style.overflow = 'auto'; // Habilita el scroll nuevamente
 }
 
 // MODO OSCURO
@@ -107,3 +143,50 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
         btn.innerHTML = 'Enviar Información <i class="fas fa-paper-plane"></i>';
     });
 });
+
+/* --- AÑADIR AL FINAL DE TU JS --- */
+
+// 1. CONFIGURACIÓN DEL REVEAL (Scroll Animations)
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-visible');
+            
+            // Si es la sección de estadísticas, activamos los contadores
+            if (entry.target.classList.contains('stats-section')) {
+                startCounters();
+            }
+        }
+    });
+}, { threshold: 0.15 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+
+// 2. LÓGICA DE CONTADORES (Count-up Animation)
+function startCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    const speed = 200; // Cuanto menor el número, más rápido cuenta
+
+    counters.forEach(counter => {
+        // Evitar que cuente dos veces si ya se activó
+        if (counter.classList.contains('counted')) return;
+        counter.classList.add('counted');
+
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const inc = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + inc);
+                setTimeout(updateCount, 1);
+            } else {
+                counter.innerText = target + (target === 10 ? "" : "+");
+            }
+        };
+        updateCount();
+    });
+}
