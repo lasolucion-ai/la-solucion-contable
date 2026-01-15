@@ -29,7 +29,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
 .theme-switch { position: fixed; top: 20px; right: 20px; background: var(--primary-blue); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 1001; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.3s ease; }
 
 /* =========================================
-   3. HEADER 
+   3. HEADER
    ========================================= */
 .hero { background: linear-gradient(135deg, #001a33, var(--primary-blue)); color: white; padding: 60px 0 100px 0; border-radius: 0 0 50px 50px; }
 .hero-flex { display: flex; flex-direction: column; align-items: center; gap: 35px; text-align: center; }
@@ -37,13 +37,29 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
 .hero-center h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 5px; }
 .hero-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 20px; }
 .contact-highlight { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); }
+
+/* ANIMACIÓN DE ICONOS CON COLORES REPRESENTATIVOS */
 .social-links { display: flex; gap: 20px; justify-content: center; }
-.social-links a { color: white; font-size: 2.2rem; animation: socialPulse 2s infinite ease-in-out; transition: color 0.3s; }
-@keyframes socialPulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); color: var(--accent-blue); } 100% { transform: scale(1); } }
+.social-links a { color: white; font-size: 2.2rem; transition: 0.3s; }
+
+/* Definición de colores para cada plataforma */
+.social-links a.wsp { animation: socialPulseWsp 2s infinite ease-in-out; }
+.social-links a.fb  { animation: socialPulseFb 2s infinite ease-in-out; }
+.social-links a.tk  { animation: socialPulseTk 2s infinite ease-in-out; }
+.social-links a.ms  { animation: socialPulseMs 2s infinite ease-in-out; }
+.social-links a.tl  { animation: socialPulseTl 2s infinite ease-in-out; }
+.social-links a.lc  { animation: socialPulseLc 2s infinite ease-in-out; }
+
+@keyframes socialPulseWsp { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); color: #25d366; } }
+@keyframes socialPulseFb  { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); color: #1877f2; } }
+@keyframes socialPulseTk  { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); color: #ff0050; } }
+@keyframes socialPulseMs  { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); color: #ea4335; } }
+@keyframes socialPulseTl  { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); color: #34b7f1; } }
+@keyframes socialPulseLc  { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); color: #f44336; } }
+
 .gerente-foto { width: 210px; height: 210px; border-radius: 50%; border: 5px solid white; overflow: hidden; margin: 0 auto 10px; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 .gerente-foto img { width: 100%; height: 100%; object-fit: cover; }
 .gerente-label { font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1.5px; opacity: 0.9; }
-
 /* =========================================
    4. SECCIONES Y GRIDS 
    ========================================= */
@@ -67,7 +83,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
 .btn-submit { background: #25d366; color: white; border: none; padding: 20px; border-radius: 15px; font-weight: 700; cursor: pointer; font-size: 1.2rem; transition: 0.3s; }
 
 /* =========================================
-   6. UBICACIÓN Y NUEVA SECCIÓN DE FOTOS
+   6. UBICACIÓN Y SECCIÓN DE FOTOS
    ========================================= */
 .map-container { 
     border-radius: 35px; overflow: hidden;
@@ -84,21 +100,19 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
 }
 .address-icon { font-size: 3rem; }
 
-/* ESTILOS PARA LAS FOTOS AL FINAL (SIN ZOOM/RECORTE) */
 .full-size-photos {
     display: flex;
     flex-direction: column; 
     gap: 40px;
     margin-top: 20px;
-    align-items: center; /* Centra todo horizontalmente de forma automática */
+    align-items: center; 
     width: 100%;
 }
 
 .full-size-photos img {
-    /* Eliminamos el ancho y alto fijo para evitar el "zoom" */
-    max-width: 90%;      /* Evita que se salga de la pantalla en móviles */
-    width: auto;         /* Respeta el ancho original */
-    height: auto;        /* Respeta la proporción original (LA CLAVE) */
+    max-width: 90%;   
+    width: auto;        
+    height: auto;      
     
     border-radius: 20px;
     box-shadow: var(--shadow);
@@ -110,7 +124,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
     text-align: center;
     font-weight: 600;
     color: var(--primary-blue);
-    margin-top: -30px;   /* Sube el texto para que "pise" un poco la foto */
+    margin-top: -30px;   
     margin-bottom: 20px;
     background: var(--card-bg);
     display: inline-block;
@@ -122,7 +136,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
 }
 
 /* =========================================
-   7. MODALES Y FLOTANTES (CORREGIDO)
+   7. MODALES Y FLOTANTES 
    ========================================= */
 .modal-overlay {
     position: fixed;
@@ -142,7 +156,6 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
     border-radius: 30px;
     max-width: 600px;
     width: 100%;
-    /* CLAVE PARA EL SCROLL */
     max-height: 85vh; 
     overflow-y: auto; 
     position: relative;
@@ -155,7 +168,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
     to { transform: translateY(0); opacity: 1; } 
 }
 
-/* Personalización del scrollbar */
+
 .modal-window::-webkit-scrollbar {
     width: 8px;
 }
@@ -180,7 +193,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
     z-index: 10;
 }
 
-/* Estilos para el contenido del listado */
+
 .modal-list-item {
     padding: 12px 0;
     border-bottom: 1px solid rgba(0,0,0,0.05);
@@ -191,12 +204,12 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
 }
 
 .modal-list-item i {
-    color: #25d366; /* Color verde para los checks */
+    color: #25d366; 
     margin-top: 5px;
     font-size: 0.9rem;
 }
 
-/* Estilo especial para los separadores (las líneas ---) */
+
 .modal-divider {
     border: none;
     height: 2px;
@@ -205,7 +218,26 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
     opacity: 0.5;
 }
 
-/* Botón flotante WhatsApp */
+.share-float {
+    position: fixed;
+    bottom: 105px; 
+    right: 30px;
+    background: var(--primary-blue);
+    color: white;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    z-index: 1000;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+.share-float:hover { transform: scale(1.1); background: var(--accent-blue); }
+
 .whatsapp-float { 
     position: fixed; 
     bottom: 30px; 
@@ -239,9 +271,9 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
     .form-container { padding: 25px; }
 }
 
-/* --- AÑADIR AL FINAL DE TU CSS --- */
 
-/* ESTILOS REVEAL (Mejora 1) */
+
+/* ESTILOS REVEAL*/
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -253,7 +285,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
     transform: translateY(0);
 }
 
-/* ESTILOS ESTADÍSTICAS (Mejora 3) */
+/* ESTILOS ESTADÍSTICAS  */
 .stats-section {
     background: var(--primary-blue);
     padding: 50px 20px;
@@ -289,7 +321,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); co
     letter-spacing: 1px;
 }
 
-/* Atributo loading lazy para optimización */
+
 img[loading="lazy"] {
     filter: blur(5px);
     transition: filter 0.3s;
@@ -298,13 +330,13 @@ img[loading="lazy"] {
 img.reveal-visible {
     filter: blur(0);
 }
-/* 1. Estado inicial: Las imágenes dentro de un .reveal nacen borrosas */
+
 .reveal img {
     filter: blur(15px);
-    transition: filter 1s ease-in-out; /* Transición suave de borroso a nítido */
+    transition: filter 1s ease-in-out; 
 }
 
-/* 2. Estado activo: Cuando el JS añade 'reveal-visible', quitamos el blur */
+
 .reveal-visible img {
     filter: blur(0) !important;
 }

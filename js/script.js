@@ -1,12 +1,11 @@
-// CONTENIDO DE LOS MODALES (Tu información original sin cambios)
+// CONTENIDO DE LOS MODALES
 const infoServicios = {
     contable: {
         titulo: "Servicios Contables",
         lista: [
             "Consultoría General",
             "Balances de Apertura, Gestión y Cierre",
-            "Regulacion de Pago de impuestos",
-            "Elaboración de Estados Financieros",            
+            "Regulacion de Pago de impuestos",            
             "Flujos de Efectivo para Préstamos Bancarios",
             "Contabilidad comercial, Servicios, Industrial, Minero, etc.",
             "Elaboracion de Estados Financieros",
@@ -72,9 +71,8 @@ function openModal(tipo) {
     const content = document.getElementById('modal-content');
     const data = infoServicios[tipo];
 
-    // Generamos el contenido HTML
     let listHTML = data.lista.map(item => {
-        // Si el item contiene guiones, renderizamos un divisor en lugar de un item con check
+ 
         if (item.includes("---")) {
             return `<hr class="modal-divider">`;
         }
@@ -144,17 +142,13 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     });
 });
 
-/* --- AÑADIR AL FINAL DE TU JS --- */
-
-// 1. CONFIGURACIÓN DEL REVEAL (Scroll Animations)
+// 1. CONFIGURACIÓN DEL REVEAL
 const revealElements = document.querySelectorAll('.reveal');
 
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('reveal-visible');
-            
-            // Si es la sección de estadísticas, activamos los contadores
             if (entry.target.classList.contains('stats-section')) {
                 startCounters();
             }
@@ -165,13 +159,12 @@ const revealObserver = new IntersectionObserver((entries) => {
 revealElements.forEach(el => revealObserver.observe(el));
 
 
-// 2. LÓGICA DE CONTADORES (Count-up Animation)
+// 2. LÓGICA DE CONTADORES 
 function startCounters() {
     const counters = document.querySelectorAll('.stat-number');
-    const speed = 200; // Cuanto menor el número, más rápido cuenta
+    const speed = 200; 
 
     counters.forEach(counter => {
-        // Evitar que cuente dos veces si ya se activó
         if (counter.classList.contains('counted')) return;
         counter.classList.add('counted');
 
@@ -189,4 +182,22 @@ function startCounters() {
         };
         updateCount();
     });
+}
+
+// 3. FUNCIÓN COMPARTIR PÁGINA
+function sharePage() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'La Solución - Tributación y Contabilidad',
+            text: 'Asesoría contable y tributaria profesional en La Paz.',
+            url: window.location.href,
+        }).then(() => {
+            console.log('Gracias por compartir');
+        }).catch(console.error);
+    } else {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            alert('Enlace copiado al portapapeles. ¡Ya puedes compartirlo!');
+        });
+    }
 }
